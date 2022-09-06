@@ -7,7 +7,12 @@ import 'package:pokedex/app/shared/theme/app.styles.dart';
 class FilterComponent extends GetView<HomeController> {
   final double maxWidth;
   final double maxHeight;
-  const FilterComponent({Key? key, required this.maxWidth, required this.maxHeight,}) : super(key: key);
+
+  const FilterComponent({
+    Key? key,
+    required this.maxWidth,
+    required this.maxHeight,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

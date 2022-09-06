@@ -79,9 +79,17 @@ class HomePage extends GetView<HomeController> {
                         SizedBox(
                           height: constraints.maxHeight * 0.03,
                         ),
-                        CardComponent(
-                          maxWidth: constraints.maxWidth,
-                          maxHeight: constraints.maxHeight,
+                        SizedBox(
+                          height: constraints.maxHeight * 0.6,
+                          child: ListView.builder(
+                            itemCount: 10,
+                            itemBuilder: (context, index) {
+                              return CardComponent(
+                                maxWidth: constraints.maxWidth,
+                                maxHeight: constraints.maxHeight,
+                              );
+                            },
+                          ),
                         ),
                       ],
                     ),

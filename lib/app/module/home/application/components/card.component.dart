@@ -14,6 +14,10 @@ class CardComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return pokeCard(context);
+  }
+
+  Stack pokeCard(BuildContext context) {
     return Stack(
       children: [
         Container(
@@ -24,81 +28,102 @@ class CardComponent extends StatelessWidget {
             color: AppStyles.grassType,
           ),
           padding: const EdgeInsets.all(10),
-          child: Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  '#001',
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-                Text(
-                  'Bulbasaur',
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        color: AppStyles.white1000,
-                      ),
-                ),
-                Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppStyles.grassBackgroundType,
-                      ),
-                      padding: const EdgeInsets.all(6),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/types/grass.svg',
-                            color: AppStyles.white1000,
-                            width: 13,
-                            height: 13,
-                          ),
-                          const SizedBox(width: 5),
-                          Text('Grass',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelSmall!
-                                  .copyWith(
-                                    color: AppStyles.white1000,
-                                  )),
-                        ],
-                      ),
+                    Text(
+                      '#001',
+                      style: Theme.of(context).textTheme.labelMedium,
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppStyles.grassBackgroundType,
-                      ),
-                      padding: const EdgeInsets.all(6),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/types/grass.svg',
+                    Text(
+                      'Bulbasaur',
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
                             color: AppStyles.white1000,
-                            width: 13,
-                            height: 13,
                           ),
-                          const SizedBox(width: 5),
-                          Text('Grass',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelSmall!
-                                  .copyWith(
-                                    color: AppStyles.white1000,
-                                  )),
-                        ],
-                      ),
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppStyles.grassBackgroundType,
+                          ),
+                          padding: const EdgeInsets.all(6),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/types/grass.svg',
+                                color: AppStyles.white1000,
+                                width: 13,
+                                height: 13,
+                              ),
+                              const SizedBox(width: 5),
+                              Text('Grass',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelSmall!
+                                      .copyWith(
+                                        color: AppStyles.white1000,
+                                      )),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppStyles.grassBackgroundType,
+                          ),
+                          padding: const EdgeInsets.all(6),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/types/grass.svg',
+                                color: AppStyles.white1000,
+                                width: 13,
+                                height: 13,
+                              ),
+                              const SizedBox(width: 5),
+                              Text(
+                                'Grass',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelSmall!
+                                    .copyWith(
+                                      color: AppStyles.white1000,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Opacity(
+              opacity: 0.1,
+              child: SvgPicture.asset(
+                'assets/patterns/pokeball.svg',
+                color: AppStyles.grey700,
+                width: maxWidth * 0.28,
+              ),
+            ),
+          ],
         ),
         Positioned(
           top: -15,
@@ -113,21 +138,6 @@ class CardComponent extends StatelessWidget {
               height: 50,
             ),
           ),
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Spacer(),
-            Positioned.fill(
-              top: -500,
-              child: SvgPicture.asset(
-                'assets/patterns/pokeball.svg',
-                color: Colors.red,
-                width: maxWidth * 0.15,
-              ),
-            )
-          ],
         ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
