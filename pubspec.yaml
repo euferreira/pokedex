@@ -12,6 +12,7 @@ dependencies:
 
   cupertino_icons: ^1.0.5
   get: ^4.6.5
+  flutter_svg: ^1.1.4
 
 dev_dependencies:
   flutter_test:
@@ -25,6 +26,7 @@ flutter:
   assets:
     - assets/fonts/
     - assets/generations/
+    - assets/generations/generation1/
     - assets/heights/
     - assets/icons/
     - assets/patterns/
