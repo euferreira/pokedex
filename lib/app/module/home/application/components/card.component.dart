@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pokedex/app/module/home/application/home.controller.dart';
-import 'package:pokedex/app/module/home/domain/entity/pokemon.entity.dart';
+import 'package:pokedex/app/module/pokemon/domain/entity/pokemon.entity.dart';
 import 'package:pokedex/app/shared/theme/app.styles.dart';
 
 class CardComponent extends GetView<HomeController> {

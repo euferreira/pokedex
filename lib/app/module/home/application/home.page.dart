@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pokedex/app/module/home/application/components/filter.component.dart';
 import 'package:pokedex/app/module/home/application/home.controller.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 import 'components/card.component.dart';
 
@@ -39,19 +40,19 @@ class HomePage extends GetView<HomeController> {
                                 icon: SvgPicture.asset(
                                   'assets/icons/generation.svg',
                                 ),
-                                onPressed: () {},
+                                onPressed: () => controller.openGenerationBottomsheet(),
                               ),
                               IconButton(
                                 icon: SvgPicture.asset(
                                   'assets/icons/sort.svg',
                                 ),
-                                onPressed: () {},
+                                onPressed: () => controller.openSortBottomsheet(),
                               ),
                               IconButton(
                                 icon: SvgPicture.asset(
                                   'assets/icons/filter.svg',
                                 ),
-                                onPressed: () {},
+                                onPressed: () => controller.openFilterBottomsheet(),
                               ),
                             ],
                           ),
@@ -82,30 +83,7 @@ class HomePage extends GetView<HomeController> {
                           ),
                           SizedBox(
                             height: constraints.maxHeight * 0.6,
-                            child: SingleChildScrollView(
-                              physics: const BouncingScrollPhysics(),
-                              child: Obx(
-                                () => AnimatedCrossFade(
-                                  firstChild: const Center(
-                                    child: CircularProgressIndicator(),
-                                  ),
-                                  secondChild: Column(
-                                    children: List.generate(
-                                      controller.pokeList.length,
-                                      (index) => CardComponent(
-                                        maxHeight: constraints.maxHeight,
-                                        maxWidth: constraints.maxWidth,
-                                        pokemon: controller.pokeList[index],
-                                      ),
-                                    ),
-                                  ),
-                                  crossFadeState: controller.isLoading.value
-                                      ? CrossFadeState.showFirst
-                                      : CrossFadeState.showSecond,
-                                  duration: const Duration(milliseconds: 300),
-                                ),
-                              ),
-                            ),
+                            child: pokeList(constraints),
                           ),
                         ],
                       ),
@@ -117,6 +95,37 @@ class HomePage extends GetView<HomeController> {
           );
         },
       ),
+    );
+  }
+
+  Widget pokeList(BoxConstraints constraints) {
+    return Obx(
+      () => controller.isLoading.isTrue
+          ? const CircularProgressIndicator()
+          : SizedBox(
+              height: constraints.maxHeight * 0.6,
+              child: SmartRefresher(
+                  controller: controller.refresherController.value,
+                  enablePullDown: false,
+                  enablePullUp: controller.pokemonList.next != null,
+                  physics: const BouncingScrollPhysics(),
+                  onLoading: () async => {
+                        await controller.mountPokeList(findMore: controller.pokemonList.next != null),
+                        controller.refresherController.value.loadComplete()
+                      },
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: List.generate(
+                        controller.pokeList.length,
+                        (index) => CardComponent(
+                          maxHeight: constraints.maxHeight,
+                          maxWidth: constraints.maxWidth,
+                          pokemon: controller.pokeList[index],
+                        ),
+                      ),
+                    ),
+                  )),
+            ),
     );
   }
 }
