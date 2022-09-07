@@ -14,6 +14,9 @@ dependencies:
   get: ^4.6.5
   flutter_svg: ^1.1.4
   flutter_keyboard_visibility: ^5.2.0
+  flutter_dotenv: ^5.0.2
+  dartz: ^0.10.1
+  dio: ^4.0.4
 
 dev_dependencies:
   flutter_test:
@@ -33,6 +36,7 @@ flutter:
     - assets/patterns/
     - assets/types/
     - assets/weights/
+    - .env
 
   fonts:
     - family: SF Pro Display

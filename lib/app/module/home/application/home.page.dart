@@ -84,13 +84,25 @@ class HomePage extends GetView<HomeController> {
                             height: constraints.maxHeight * 0.6,
                             child: SingleChildScrollView(
                               physics: const BouncingScrollPhysics(),
-                              child: Column(
-                                children: List.generate(
-                                  50,
-                                  (index) => CardComponent(
-                                    maxHeight: constraints.maxHeight,
-                                    maxWidth: constraints.maxWidth,
+                              child: Obx(
+                                () => AnimatedCrossFade(
+                                  firstChild: const Center(
+                                    child: CircularProgressIndicator(),
                                   ),
+                                  secondChild: Column(
+                                    children: List.generate(
+                                      controller.pokeList.length,
+                                      (index) => CardComponent(
+                                        maxHeight: constraints.maxHeight,
+                                        maxWidth: constraints.maxWidth,
+                                        pokemon: controller.pokeList[index],
+                                      ),
+                                    ),
+                                  ),
+                                  crossFadeState: controller.isLoading.value
+                                      ? CrossFadeState.showFirst
+                                      : CrossFadeState.showSecond,
+                                  duration: const Duration(milliseconds: 300),
                                 ),
                               ),
                             ),
