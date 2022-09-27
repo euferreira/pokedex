@@ -117,10 +117,13 @@ class HomePage extends GetView<HomeController> {
                     child: Column(
                       children: List.generate(
                         controller.pokeList.length,
-                        (index) => CardComponent(
-                          maxHeight: constraints.maxHeight,
-                          maxWidth: constraints.maxWidth,
-                          pokemon: controller.pokeList[index],
+                        (index) => InkWell(
+                          onTap: () => Get.toNamed('/home/profile', arguments: controller.pokeList[index]),
+                          child: CardComponent(
+                            maxHeight: constraints.maxHeight,
+                            maxWidth: constraints.maxWidth,
+                            pokemon: controller.pokeList[index],
+                          ),
                         ),
                       ),
                     ),
