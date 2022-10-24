@@ -50,7 +50,7 @@ class AppTheme {
       color: AppStyles.white1000,
       elevation: 0,
       iconTheme: IconThemeData(
-        color: AppStyles.black500,
+        color: AppStyles.backgroundWhite,
       ),
       titleTextStyle: TextStyle(
         color: AppStyles.black500,
