@@ -12,22 +12,15 @@ class ProfilePage extends GetView<ProfileController> {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
-          final maxHeight = constraints.maxHeight;
+          final maxHeight = constraints.maxHeight - kToolbarHeight;
           final maxWidth = constraints.maxWidth;
 
           return SingleChildScrollView(
             child: Stack(
               children: [
                 Container(
-                  height: maxHeight * 0.47,
-                  width: maxWidth,
-                  decoration: const BoxDecoration(
-                    color: AppStyles.grassBackgroundType,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
-                    ),
-                  ),
+                  height: maxHeight * 0.51,
+                  color: AppStyles.grassBackgroundType,
                   child: SafeArea(
                     child: Stack(
                       alignment: Alignment.bottomCenter,
@@ -41,14 +34,15 @@ class ProfilePage extends GetView<ProfileController> {
                                 SvgPicture.asset(
                                   "assets/patterns/pokeball.svg",
                                   color: AppStyles.white1000.withOpacity(.3),
+                                  height: 90,
                                 ),
-                                Text(
-                                  "About",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .copyWith(
-                                    color: AppStyles.white1000,
+                                Positioned(
+                                  top: 15,
+                                  child: Text(
+                                    "About",
+                                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                      color: AppStyles.white1000,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -59,14 +53,15 @@ class ProfilePage extends GetView<ProfileController> {
                                 SvgPicture.asset(
                                   "assets/patterns/pokeball.svg",
                                   color: AppStyles.white1000.withOpacity(.3),
+                                  height: 90,
                                 ),
-                                Text(
-                                  "Stats",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .copyWith(
-                                    color: AppStyles.white1000,
+                                Positioned(
+                                  top: 15,
+                                  child: Text(
+                                    "Stats",
+                                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                      color: AppStyles.white1000,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -77,14 +72,15 @@ class ProfilePage extends GetView<ProfileController> {
                                 SvgPicture.asset(
                                   "assets/patterns/pokeball.svg",
                                   color: AppStyles.white1000.withOpacity(.3),
+                                  height: 90,
                                 ),
-                                Text(
-                                  "Evolution",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .copyWith(
-                                    color: AppStyles.white1000,
+                                Positioned(
+                                  top: 15,
+                                  child: Text(
+                                    "Evolution",
+                                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                      color: AppStyles.white1000,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -95,16 +91,14 @@ class ProfilePage extends GetView<ProfileController> {
                           children: [
                             Text(
                               "BULBASAUR",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(
-                                foreground: Paint()
-                                  ..style = PaintingStyle.stroke
-                                  ..strokeWidth = 1
-                                  ..color =
-                                  AppStyles.white1000.withOpacity(.3),
-                              ),
+                              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                    foreground: Paint()
+                                      ..style = PaintingStyle.stroke
+                                      ..strokeWidth = 1
+                                      ..color =
+                                          AppStyles.white1000.withOpacity(.3),
+                                    fontSize: 90,
+                                  ),
                               overflow: TextOverflow.fade,
                               maxLines: 1,
                             ),
@@ -119,7 +113,7 @@ class ProfilePage extends GetView<ProfileController> {
                                     SvgPicture.asset(
                                       "assets/patterns/circle.svg",
                                       color:
-                                      AppStyles.white1000.withOpacity(.3),
+                                          AppStyles.white1000.withOpacity(.3),
                                     ),
                                     Image.asset(
                                       "assets/generations/generation1/001.png",
@@ -144,15 +138,15 @@ class ProfilePage extends GetView<ProfileController> {
                                           .textTheme
                                           .titleSmall!
                                           .copyWith(
-                                        color: AppStyles.white1000,
-                                      ),
+                                            color: AppStyles.white1000,
+                                          ),
                                     ),
                                     Row(
                                       children: [
                                         Container(
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                            BorderRadius.circular(10),
+                                                BorderRadius.circular(10),
                                             color: AppStyles.grassType,
                                           ),
                                           padding: const EdgeInsets.all(6),
@@ -171,9 +165,9 @@ class ProfilePage extends GetView<ProfileController> {
                                                     .textTheme
                                                     .labelSmall!
                                                     .copyWith(
-                                                  color:
-                                                  AppStyles.white1000,
-                                                ),
+                                                      color:
+                                                          AppStyles.white1000,
+                                                    ),
                                               ),
                                             ],
                                           ),
@@ -181,12 +175,11 @@ class ProfilePage extends GetView<ProfileController> {
                                         /*if (pokemon.types.length > 1) ...[
                                       const SizedBox(
                                         width: 5,
-                                      ),
-                                      Container(
+                                      ),*/
+                                        /*Container(
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(10),
-                                          color: badgeBackground(
-                                              pokemon.types[1].name ?? ""),
+                                          color: badgeBackground(     pokemon.types[1].name ?? ""),
                                         ),
                                         padding: const EdgeInsets.all(6),
                                         child: Row(
@@ -209,8 +202,7 @@ class ProfilePage extends GetView<ProfileController> {
                                             ),
                                           ],
                                         ),
-                                      ),
-                                    ],*/
+                                      ),*/
                                       ],
                                     ),
                                   ],
@@ -232,6 +224,28 @@ class ProfilePage extends GetView<ProfileController> {
                           Icons.arrow_back,
                           color: Theme.of(context).appBarTheme.iconTheme!.color,
                           size: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: maxHeight,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: maxHeight * 0.44,
+                      ),
+                      Container(
+                        height: maxHeight * .5,
+                        alignment: Alignment.bottomCenter,
+                        width: maxWidth,
+                        decoration: const BoxDecoration(
+                          color: AppStyles.backgroundWhite,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(50),
+                            topRight: Radius.circular(50),
+                          ),
                         ),
                       ),
                     ],
